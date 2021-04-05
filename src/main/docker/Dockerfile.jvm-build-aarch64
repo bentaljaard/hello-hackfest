@@ -21,12 +21,12 @@
 # docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/hello-hackfest-jvm
 #
 ###
-FROM quay.io/qiot/quarkus-ubi-multiarch-builder:v21.0.0.2 as builder
-RUN mkdir -p /usr/src/app
-COPY pom.xml /usr/src/app/
-RUN mvn -f /usr/src/app/pom.xml -B de.qaware.maven:go-offline-maven-plugin:1.2.5:resolve-dependencies
-COPY src /usr/src/app/src
-RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests
+# FROM quay.io/qiot/quarkus-ubi-multiarch-builder:v21.0.0.2 as builder
+# RUN mkdir -p /usr/src/app
+# COPY pom.xml /usr/src/app/
+# RUN mvn -f /usr/src/app/pom.xml -B de.qaware.maven:go-offline-maven-plugin:1.2.5:resolve-dependencies
+# COPY src /usr/src/app/src
+# RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests
 
 
 FROM quay.io/qiot/ubi-multiarch:v1.0.1
@@ -51,10 +51,10 @@ RUN dnf -y install curl ca-certificates ${JAVA_PACKAGE} \
 # Configure the JAVA_OPTIONS, you can add -XshowSettings:vm to also display the heap size.
 ENV JAVA_OPTIONS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 # We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --from=builder --chown=1001 /usr/src/app/target/quarkus-app/lib/ /deployments/lib/
-COPY --from=builder --chown=1001 /usr/src/app/target/quarkus-app/*.jar /deployments/
-COPY --from=builder --chown=1001 /usr/src/app/target/quarkus-app/app/ /deployments/app/
-COPY --from=builder --chown=1001 /usr/src/app/target/quarkus-app/quarkus/ /deployments/quarkus/
+COPY --chown=1001 target/quarkus-app/lib/ /deployments/lib/
+COPY --chown=1001 target/quarkus-app/*.jar /deployments/
+COPY --chown=1001 target/quarkus-app/app/ /deployments/app/
+COPY --chown=1001 target/quarkus-app/quarkus/ /deployments/quarkus/
 
 EXPOSE 8080
 USER 1001
