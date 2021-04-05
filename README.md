@@ -1,4 +1,4 @@
-# hello-hackfest project.
+# hello-hackfest project..
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
