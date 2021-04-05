@@ -28,7 +28,7 @@ COPY pom.xml /usr/src/app/
 COPY src /usr/src/app/src
 RUN chown -R 1001:root /usr/src/app
 USER 1001
-RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests
+RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests -Dmaven.repo.local=/usr/src/app/.m2/repository
 
 
 FROM quay.io/qiot/ubi-multiarch:v1.0.1
