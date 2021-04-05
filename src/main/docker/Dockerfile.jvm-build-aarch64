@@ -21,7 +21,7 @@
 # docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/hello-hackfest-jvm
 #
 ###
-FROM quay.io/qiot/quarkus-ubi-multiarch-builder:v21.0.0.2
+FROM quay.io/qiot/quarkus-ubi-multiarch-builder:v21.0.0.2 as builder
 RUN mvn -f /workspace/source/pom.xml -B de.qaware.maven:go-offline-maven-plugin:1.2.5:resolve-dependencies
 RUN mvn -f /workspace/source/pom.xml clean package -DskipTests
 
