@@ -3,7 +3,7 @@ RUN mkdir -p /usr/src/app
 COPY pom.xml /usr/src/app/
 RUN mvn -f /usr/src/app/pom.xml -B de.qaware.maven:go-offline-maven-plugin:1.2.5:resolve-dependencies
 COPY src /usr/src/app/src
-RUN mvn -f /usr/src/app/pom.xml -Pnative clean package -DskipTests
+RUN mvn -f /usr/src/app/pom.xml -Pnative clean package -DskipTests -Dnative-image.xmx=5g
 
 
 FROM quay.io/qiot/ubi-multiarch:v1.0.1
