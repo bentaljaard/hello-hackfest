@@ -21,7 +21,7 @@
 # docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/hello-hackfest-jvm
 #
 ###
-FROM quay.io/bentaljaard/ubi8-maven AS builder
+FROM quay.io/bentaljaard/ubi8-maven:1.0 AS builder
 RUN mkdir -p /usr/src/app
 COPY pom.xml /usr/src/app/
 COPY src /usr/src/app/src
