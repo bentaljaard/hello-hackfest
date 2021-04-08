@@ -24,7 +24,6 @@
 FROM quay.io/qiot/quarkus-ubi-multiarch-builder:v21.0.0.2 AS builder
 RUN mkdir -p /usr/src/app
 COPY pom.xml /usr/src/app/
-RUN mvn -f /usr/src/app/pom.xml -B de.qaware.maven:go-offline-maven-plugin:1.2.5:resolve-dependencies
 COPY src /usr/src/app/src
 RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests
 
