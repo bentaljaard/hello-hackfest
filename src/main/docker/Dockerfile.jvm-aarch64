@@ -1,26 +1,8 @@
 ####
-# This Dockerfile is used in order to build a container that runs the Quarkus application in JVM mode
-#
-# Before building the container image run:
-#
-# ./mvnw package
-#
-# Then, build the image with:
-#
-# docker build -f src/main/docker/Dockerfile.jvm -t quarkus/hello-hackfest-jvm .
-#
-# Then run the container using:
-#
-# docker run -i --rm -p 8080:8080 quarkus/hello-hackfest-jvm
-#
-# If you want to include the debug port into your docker image
-# you will have to expose the debug port (default 5005) like this :  EXPOSE 8080 5050
-#
-# Then run the container using :
-#
-# docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/hello-hackfest-jvm
+# This Dockerfile is used in order to build a container that runs the Quarkus application in JVM multiarch mode
 #
 ###
+
 FROM quay.io/qiot/ubi-multiarch-maven:v1.0.0 AS builder
 RUN mkdir -p /usr/src/app
 COPY pom.xml /usr/src/app/
