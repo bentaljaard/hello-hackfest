@@ -12,6 +12,6 @@ public class Hello {
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         String osType= System.getProperty("os.arch");
-        return "Hello QIoT hackfest, I am running on " + osType;
+        return "Hello devconf.cz, I am running on " + osType + "!!";
     }
 }
