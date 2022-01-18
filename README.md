@@ -1,3 +1,7 @@
+# Pre-requisites
+
+In order for this application to run on OpenShift, please be sure to install the qemu-user-static deamonset from the https://github.com/qiot-project/qiot-multiarch-ocp repo. This will enable the platform to run multiarch containers.
+
 # Deploying Application to OpenShift
 
 ```
