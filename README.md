@@ -10,3 +10,9 @@ oc expose dc hello-hackfest-native --port 8080
 oc expose svc hello-hackfest
 oc expose svc hello-hackfest-native
 ```
+
+# Verifying on OpenShift
+
+* Run either the hello-hackfest or hello-hackfest-native pipeline
+* Find the route for the application
+* Call the /hello endpoint
